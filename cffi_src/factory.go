@@ -15,7 +15,7 @@ import (
 	http "github.com/bogdanfinn/fhttp"
 	"github.com/bogdanfinn/fhttp/cookiejar"
 	"github.com/bogdanfinn/fhttp/http2"
-	"github.com/bogdanfinn/tls-client"
+	tls_client "github.com/bogdanfinn/tls-client"
 	tls "github.com/bogdanfinn/utls"
 	"github.com/google/uuid"
 )
@@ -102,6 +102,10 @@ func CreateClient(requestInput RequestInput) (client tls_client.HttpClient, sess
 func BuildRequest(input RequestInput) (*http.Request, *TLSClientError) {
 	var tlsReq *http.Request
 	var err error
+
+	if input.CloseRequest {
+		tlsReq.Close = true
+	}
 
 	if input.RequestMethod == "" || input.RequestUrl == "" {
 		return nil, NewTLSClientError(fmt.Errorf("no request url or request method provided"))

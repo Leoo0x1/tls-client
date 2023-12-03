@@ -51,6 +51,7 @@ type CookiesFromSessionOutput struct {
 type RequestInput struct {
 	CatchPanics                 bool                `json:"catchPanics"`
 	CertificatePinningHosts     map[string][]string `json:"certificatePinningHosts"`
+	CloseRequest                bool                `json:"closeRequest"`
 	CustomTlsClient             *CustomTlsClient    `json:"customTlsClient"`
 	TransportOptions            *TransportOptions   `json:"transportOptions"`
 	FollowRedirects             bool                `json:"followRedirects"`
